@@ -1,10 +1,9 @@
+from flask import Flask, request, jsonify
 import os
 import openai
-from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-# Ensure the API key is loaded from the environment variable
 openai.api_key = os.getenv('OPENAI_API_KEY')
 
 @app.route('/chat', methods=['POST'])
@@ -15,7 +14,7 @@ def chat():
 
     try:
         response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",  # Adjust the model name if necessary
+            model="gpt-3.5-turbo",
             messages=[
                 {"role": "system", "content": "You are a helpful assistant."},
                 {"role": "user", "content": user_input}
