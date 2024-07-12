@@ -1,7 +1,7 @@
 import os
-import openai
 from flask import Flask, request, render_template
 import fitz  # PyMuPDF
+import openai
 
 app = Flask(__name__)
 
@@ -42,4 +42,8 @@ def upload_file():
         return summary
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port, debug=True)
+
+if not os.path.exists('uploads'):
+    os.makedirs('uploads')
