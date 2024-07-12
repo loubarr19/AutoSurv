@@ -20,12 +20,15 @@ def pdf_to_text(pdf_path):
     return text
 
 def analyze_text(text):
-    response = openai.Completion.create(
+    response = openai.ChatCompletion.create(
         model="gpt-4",
-        prompt=f"Summarize the following text and provide suggestions:\n\n{text}",
+        messages=[
+            {"role": "system", "content": "You are a helpful assistant."},
+            {"role": "user", "content": f"Summarize the following text and provide suggestions:\n\n{text}"}
+        ],
         max_tokens=150
     )
-    return response.choices[0].text.strip()
+    return response['choices'][0]['message']['content'].strip()
 
 @app.route('/')
 def index():
@@ -48,7 +51,3 @@ def upload_file():
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port, debug=True)
-
-# Ensure the 'uploads' directory exists
-if not os.path.exists('uploads'):
-    os.makedirs('uploads')
