@@ -1,4 +1,4 @@
-AutoSurv
+PyMuPDF
 requests
 flask
 openai
