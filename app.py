@@ -20,7 +20,7 @@ def pdf_to_text(pdf_path):
     return text
 
 def analyze_text(text):
-    response = client.chat.completions.create(
+    response = openai.ChatCompletion.create(
         model="gpt-4",
         messages=[
             {"role": "system", "content": "You are a helpful assistant."},
@@ -28,7 +28,7 @@ def analyze_text(text):
         ],
         max_tokens=150
     )
-    return response['choices'][0]['message']['content'].strip()
+    return response.choices[0].message['content'].strip()
 
 @app.route('/')
 def index():
