@@ -1,5 +1,5 @@
 PyMuPDF
-flask      
+Flask      
 requests    
 openai
 
