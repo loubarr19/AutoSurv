@@ -28,7 +28,8 @@ def analyze_text(text):
         ],
         max_tokens=150
     )
-    return response.choices[0].message['content'].strip()
+    # Access the response content correctly
+    return response['choices'][0]['message']['content'].strip()
 
 @app.route('/')
 def index():
