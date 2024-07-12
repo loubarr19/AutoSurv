@@ -20,7 +20,7 @@ def pdf_to_text(pdf_path):
     return text
 
 def analyze_text(text):
-    response = openai.ChatCompletion.create(
+    response = client.chat.completions.create(
         model="gpt-4",
         messages=[
             {"role": "system", "content": "You are a helpful assistant."},
