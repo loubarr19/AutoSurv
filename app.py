@@ -1,11 +1,11 @@
-from flask import Flask, request, render_template
 import os
-import fitz  # PyMuPDF
 import openai
+from flask import Flask, request, render_template
+import fitz  # PyMuPDF
 
 app = Flask(__name__)
 
-# Set your OpenAI API key
+# Load the API key from the environment variable
 openai.api_key = os.getenv('OPENAI_API_KEY')
 
 def pdf_to_text(pdf_path):
